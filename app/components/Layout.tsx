@@ -16,12 +16,7 @@ export const Layout: FC = ({ children }) => {
 			<header class={headerClass}>
 				<h1 class={titleClass}>
 					<a href="/" class={titleLinkClass}>
-						<img
-							src="/static/honox-blog-template-icon.png"
-							alt="icon"
-							width="40px"
-							class={imgClass}
-						/>
+						<img src="/static/honox-blog-template-icon.png" alt="icon" width="40px" class={imgClass} />
 						<span class={titleTextClass}>HonoX MicroCMS Blog Template</span>
 					</a>
 				</h1>
