@@ -6,7 +6,7 @@ import Pagenation from '../../../islands/pagenation';
 
 export default createRoute(async (c) => {
 	const { tag } = c.req.param();
-const response = await getArticles();
+	const response = await getArticles();
 	const articles: Article[] = await getArticlesByTag(response, tag);
 
 	if (!articles.length) {

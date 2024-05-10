@@ -3,7 +3,6 @@ import { createRoute } from 'honox/factory';
 
 import { getArticles, type Article } from '../../lib/microcms';
 
-
 export default createRoute(async (c) => {
 	const response = await getArticles();
 	let tagMap = new Map();
