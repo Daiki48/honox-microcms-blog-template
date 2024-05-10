@@ -1,0 +1,40 @@
+{
+	"name": "honox-microcms-blog-template",
+	"version": "0.1.0",
+	"license": "MIT",
+	"author": {
+		"name": "Daiki Nakashima",
+		"email": "daiki48.engineer@gmail.com"
+	},
+	"description": "HonoX blog template with MicroCMS",
+	"keywords": [
+		"hono",
+		"microcms",
+		"template"
+	],
+	"type": "module",
+	"scripts": {
+		"dev": "prettier --write . && vite",
+		"build": "prettier --write . && vite build --mode client && vite build",
+		"format": "prettier --write .",
+		"preview": "wrangler pages dev ./dist",
+		"deploy": "$npm_execpath run build && wrangler pages deploy ./dist"
+	},
+	"private": true,
+	"dependencies": {
+		"date-fns": "^3.6.0",
+		"date-fns-tz": "^3.1.3",
+		"hono": "^4.3.2",
+		"honox": "^0.1.16",
+		"marked": "^12.0.2",
+		"microcms-js-sdk": "^3.1.1"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20240403.0",
+		"@hono/vite-cloudflare-pages": "^0.2.4",
+		"@hono/vite-dev-server": "^0.12.0",
+		"prettier": "^3.2.5",
+		"vite": "^5.2.10",
+		"wrangler": "^3.47.0"
+	}
+}
