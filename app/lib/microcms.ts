@@ -38,16 +38,7 @@ export const getArticles = async (pageNum?: number) => {
 		return await microcmsClient.get<ArticleResponse>({
 			endpoint: 'article',
 			queries: {
-				fields: [
-					'id',
-					'tag',
-					'category',
-					'title',
-					'description',
-					'eyecatch',
-					'content',
-					'publishedAt'
-				],
+				fields: ['id', 'tag', 'category', 'title', 'description', 'eyecatch', 'content', 'publishedAt'],
 				orders: '-publishedAt',
 				offset: (pageNum - 1) * articlesLimit,
 				limit: articlesLimit
@@ -57,16 +48,7 @@ export const getArticles = async (pageNum?: number) => {
 		return await microcmsClient.get<ArticleResponse>({
 			endpoint: 'article',
 			queries: {
-				fields: [
-					'id',
-					'tag',
-					'category',
-					'title',
-					'description',
-					'eyecatch',
-					'content',
-					'publishedAt'
-				],
+				fields: ['id', 'tag', 'category', 'title', 'description', 'eyecatch', 'content', 'publishedAt'],
 				orders: '-publishedAt',
 				offset: 0,
 				limit: articlesLimit
