@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs';
+import { promises as fs } from 'node:fs';
 import { marked } from 'marked';
 
 export const convertToHtml = async (markdown: string) => {
