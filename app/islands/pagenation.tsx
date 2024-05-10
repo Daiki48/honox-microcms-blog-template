@@ -7,8 +7,7 @@ export default function Pagenation({
 	totalCount,
 	limit
 }: PropsWithChildren<ArticleTotalCount>) {
-	const range = (start: number, end: number) =>
-		[...Array(end - start + 1)].map((_, i) => start + i);
+	const range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
 
 	const totalPages = Math.ceil(totalCount / limit);
 
@@ -16,9 +15,11 @@ export default function Pagenation({
 		<ul class={pagenationClass}>
 			{totalPages > 1 &&
 				range(1, Math.ceil(totalCount / limit)).map((page, index) => (
-					<li key={index} class={pageNumberClass}>
-						<a href={`/${path}/${page}`}>{page}</a>
-					</li>
+					<a href={`/${path}/${page}`}>
+						<li key={index} class={pageNumberClass}>
+							{page}
+						</li>
+					</a>
 				))}
 		</ul>
 	);
@@ -32,14 +33,10 @@ const pageNumberClass = css`
 	border-radius: 4px;
 	box-shadow: 0 0 3px gray;
 	font-size: 20px;
+	color: rgba(105, 105, 105, 1);
 	&:hover {
 		background-color: rgba(220, 220, 220, 1);
 		box-shadow: 0 0 10px gray;
-	}
-	a {
-		color: rgba(105, 105, 105, 1);
-	}
-	a:hover {
 		color: rgba(255, 127, 80, 1);
 	}
 `;

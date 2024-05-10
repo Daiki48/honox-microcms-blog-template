@@ -8,13 +8,6 @@ import Pagenation from '../../islands/pagenation';
 const response = await getArticles();
 
 export default createRoute(async (c) => {
-	// const { page } = c.req.param();
-	// const pageNumber = Number(page);
-	//
-	// if (!page) {
-	// 	return c.notFound();
-	// }
-
 	return c.render(
 		<div class={blogContainerClass}>
 			<h1 class={blogHeaderClass}>Blog</h1>
@@ -45,9 +38,9 @@ export default createRoute(async (c) => {
 								<ul class={tagListClass}>
 									{article.tag
 										? article.tag.map((tag) => (
-												<li class={tagClass}>
-													<a href={`/tags/${tag}`}>{tag}</a>
-												</li>
+												<a href={`/tags/${tag}`}>
+													<li class={tagClass}>{tag}</li>
+												</a>
 											))
 										: null}
 								</ul>
@@ -82,6 +75,7 @@ const tagClass = css`
 	background-color: rgba(211, 211, 211, 0.5);
 	border-radius: 10px;
 	font-size: 10px;
+	color: rgba(105, 105, 105, 1);
 	&:hover {
 		background-color: rgba(211, 211, 211, 1);
 	}

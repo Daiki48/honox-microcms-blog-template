@@ -39,9 +39,9 @@ export default createRoute(async (c) => {
 							<ul class={tagListClass}>
 								{article.tag
 									? article.tag.map((tag) => (
-											<li class={tagClass}>
-												<a href={`/tags/${tag}`}>{tag}</a>
-											</li>
+											<a href={`/tags/${tag}`}>
+												<li class={tagClass}>{tag}</li>
+											</a>
 										))
 									: null}
 							</ul>
@@ -66,6 +66,7 @@ const tagClass = css`
 	background-color: rgba(211, 211, 211, 0.5);
 	border-radius: 10px;
 	font-size: 10px;
+	color: rgba(105, 105, 105, 1);
 	&:hover {
 		background-color: rgba(211, 211, 211, 1);
 	}

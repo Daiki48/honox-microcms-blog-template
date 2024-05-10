@@ -21,21 +21,16 @@ export default createRoute(async (c) => {
 				{article.eyecatch ? (
 					<img src={article.eyecatch.url} alt="eyecatch" width="300px" height="auto" />
 				) : (
-					<img
-						src="/static/honox-blog-template-icon.webp"
-						alt="eyecatch"
-						width="300px"
-						height="auto"
-					/>
+					<img src="/static/honox-blog-template-icon.webp" alt="eyecatch" width="300px" height="auto" />
 				)}
 				<h1 class={titleClass}>{article.title}</h1>
 				<p class={categoryClass}>{article.category}</p>
 				<ul class={tagListClass}>
 					{article.tag ? (
 						article.tag.map((tag) => (
-							<li class={tagClass}>
-								<a href={`/tags/${tag}`}>{tag}</a>
-							</li>
+							<a href={`/tags/${tag}`}>
+								<li class={tagClass}>{tag}</li>
+							</a>
 						))
 					) : (
 						<li></li>
@@ -63,6 +58,7 @@ const tagClass = css`
 	list-style: none;
 	background-color: rgba(211, 211, 211, 0.5);
 	border-radius: 10px;
+	color: rgba(105, 105, 105, 1);
 	&:hover {
 		background-color: rgba(211, 211, 211, 1);
 	}
@@ -96,7 +92,7 @@ const articleMainClass = css`
 `;
 
 const articleTocClass = css`
-	background-color: rgb(220, 220, 220);
+	background-color: rgba(220, 220, 220, 0.2);
 	display: flex;
 	flex: 0 2 30%;
 	position: sticky;

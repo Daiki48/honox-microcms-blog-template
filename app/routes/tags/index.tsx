@@ -22,11 +22,11 @@ export default createRoute(async (c) => {
 			<h1 class={tagsHeaderClass}>Tags</h1>
 			<ul class={tagsListClass}>
 				{Array.from(tagMap).map(([tag, count]) => (
-					<li class={tagClass}>
-						<a href={`/tags/${tag}`}>
+					<a href={`/tags/${tag}`}>
+						<li class={tagClass}>
 							{tag} <span class={tagCountClass}>{count}</span>
-						</a>
-					</li>
+						</li>
+					</a>
 				))}
 			</ul>
 		</div>,
@@ -45,6 +45,7 @@ const tagClass = css`
 	background-color: rgba(211, 211, 211, 0.5);
 	border-radius: 10px;
 	font-size: 16px;
+	color: rgba(105, 105, 105, 1);
 	&:hover {
 		background-color: rgba(211, 211, 211, 1);
 	}
