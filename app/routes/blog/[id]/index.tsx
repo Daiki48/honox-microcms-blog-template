@@ -5,10 +5,9 @@ import { jstFromUtcDateTime } from '../../../lib/formatDate';
 import Toc from '../../../islands/toc';
 import ParsedHtml from '../../../islands/parsedHtml';
 
-const response = await getArticles();
-
 export default createRoute(async (c) => {
 	const { id } = c.req.param();
+const response = await getArticles();
 	const article = await getArticleById(response, id);
 
 	if (!article) {

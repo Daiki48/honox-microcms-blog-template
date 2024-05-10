@@ -4,10 +4,9 @@ import { getArticles, getArticlesByTag, type Article } from '../../../lib/microc
 import { jstFromUtcDate } from '../../../lib/formatDate';
 import Pagenation from '../../../islands/pagenation';
 
-const response = await getArticles();
-
 export default createRoute(async (c) => {
 	const { tag } = c.req.param();
+const response = await getArticles();
 	const articles: Article[] = await getArticlesByTag(response, tag);
 
 	if (!articles.length) {

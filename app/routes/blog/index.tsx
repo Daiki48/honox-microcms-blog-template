@@ -5,9 +5,8 @@ import { getArticles, type Article } from '../../lib/microcms';
 import { jstFromUtcDate } from '../../lib/formatDate';
 import Pagenation from '../../islands/pagenation';
 
-const response = await getArticles();
-
 export default createRoute(async (c) => {
+const response = await getArticles();
 	return c.render(
 		<div class={blogContainerClass}>
 			<h1 class={blogHeaderClass}>Blog</h1>

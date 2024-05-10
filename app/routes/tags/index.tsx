@@ -3,9 +3,9 @@ import { createRoute } from 'honox/factory';
 
 import { getArticles, type Article } from '../../lib/microcms';
 
-const response = await getArticles();
 
 export default createRoute(async (c) => {
+	const response = await getArticles();
 	let tagMap = new Map();
 	response.contents.forEach((article: Article) => {
 		if (article.tag && article.tag.length > 0) {
