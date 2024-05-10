@@ -13,7 +13,10 @@ export default defineConfig(({ mode }) => {
 			ssr: {
 				external: ['microcms-js-sdk']
 			},
-			plugins: [honox(), pages()]
+			plugins: [honox(), pages()],
+			build: {
+				target: 'esnext'
+			}
 		};
 	}
 });
