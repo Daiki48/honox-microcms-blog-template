@@ -9,30 +9,28 @@ export default defineConfig( async ({ mode, command }) => {
 		return {
 			plugins: [client()]
 		};
-	} 
+	} else {
+		if (command === "build") {
+			return {
+				plugins: [honox(), pages()],
+			};
+		}
 
-	  // ref: https://github.com/honojs/honox/issues/109
-  if (command === "build") {
-    return {
-      plugins: [honox(), pages()],
-    };
-  }
-
-	  // ref: https://github.com/honojs/honox/issues/39
-  const { env, dispose } = await getPlatformProxy();
-  return {
-		ssr: {
-				external: ['microcms-js-sdk']
+		const { env, dispose } = await getPlatformProxy();
+		return {
+			ssr: {
+					external: ['microcms-js-sdk']
+				},
+			plugins: [
+				honox({ devServer: { env, plugins: [{ onServerClose: dispose }] } }),
+				pages(),
+			],
+			build: {
+				target: 'esnext'
 			},
-    plugins: [
-      honox({ devServer: { env, plugins: [{ onServerClose: dispose }] } }),
-      pages(),
-    ],
-		build: {
-			target: 'esnext'
-		},
-    server: {
-      port: 5173,
-    },
-  };
+			server: {
+				port: 5173,
+			},
+		};
+	} 
 });
