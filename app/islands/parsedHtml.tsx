@@ -9,11 +9,7 @@ export default function ParsedHtml({ content }: PropsWithChildren<HtmlContent>) 
 
 	return (
 		<div>
-			<div
-				class={articleContentClass}
-				dangerouslySetInnerHTML={{ __html: content }}
-				ref={headers}
-			/>
+			<div class={articleContentClass} dangerouslySetInnerHTML={{ __html: content }} ref={headers} />
 		</div>
 	);
 }
