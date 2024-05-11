@@ -13,21 +13,23 @@ export const Layout: FC = ({ children }) => {
 	const current = c.req.path;
 	return (
 		<div class={container}>
-			<header class={headerClass}>
-				<h1 class={titleClass}>
-					<a href="/" class={titleLinkClass}>
-						<img src="/static/honox-blog-template-icon.png" alt="icon" width="40px" class={imgClass} />
-						<span class={titleTextClass}>HonoX MicroCMS Blog Template</span>
-					</a>
-				</h1>
-				<nav class={navClass}>
-					{links.map((link) => (
-						<a href={link.href} class={cx(linkClass, current === link.href && activeLinkClass)}>
-							{link.view}
+			<div class={headerContainerClass}>
+				<header class={headerClass}>
+					<h1 class={titleClass}>
+						<a href="/" class={titleLinkClass}>
+							<img src="/static/honox-blog-template-icon.png" alt="icon" width="40px" class={imgClass} />
+							<span class={titleTextClass}>HonoX MicroCMS Blog Template</span>
 						</a>
-					))}
-				</nav>
-			</header>
+					</h1>
+					<nav class={navClass}>
+						{links.map((link) => (
+							<a href={link.href} class={cx(linkClass, current === link.href && activeLinkClass)}>
+								{link.view}
+							</a>
+						))}
+					</nav>
+				</header>
+			</div>
 			<main class={mainContainerClass}>{children}</main>
 			<footer class={footerClass}>
 				<span>Copyright 2024 HonoX MicroCMS Blog Template</span>
@@ -57,17 +59,31 @@ const titleLinkClass = css`
 	align-items: center;
 `;
 
-const headerClass = css`
+const headerContainerClass = css`
+	position: fixed;
+	top: 0;
+	width: 100%;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
+`;
+
+const headerClass = css`
+	display: inline-flex;
+	align-items: center;
+	width: 100%;
 	justify-content: space-between;
 	padding: 0 4rem;
+	background-color: rgba(244, 244, 244, 0.8);
 `;
 
 const mainContainerClass = css`
 	max-width: 80%;
 	margin: 0 auto;
-	padding: 0.8rem;
+	padding-top: 4rem;
+	padding-left: 0.8rem;
+	padding-right: 0.8rem;
+	padding-bottom: 0.8rem;
 	flex: 1;
 	min-height: 100vh;
 	@media (max-width: 1000px) {
