@@ -3,7 +3,7 @@ import type { FC } from 'hono/jsx';
 import { useRequestContext } from 'hono/jsx-renderer';
 
 const links = [
-	{ href: '/about', view: 'About' },
+	{ href: '/news', view: 'News' },
 	{ href: '/blog', view: 'Blog' },
 	{ href: '/tags', view: 'Tags' }
 ];

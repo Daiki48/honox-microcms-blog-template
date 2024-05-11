@@ -112,6 +112,7 @@ const articleMainContentClass = css`
 	a {
 		color: rgba(255, 255, 244, 12, 1);
 	}
+	font-size: 16px;
 `;
 
 const headClass = css`

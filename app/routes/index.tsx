@@ -12,8 +12,8 @@ export default createRoute((c) => {
 				<img src="/static/honox-blog-template-icon.png" alt="icon" width="400px" class={imgClass} />
 			</div>
 			<div class={linksClass}>
-				<a href="/about" class={aboutLinkClass}>
-					私について
+				<a href="/news" class={aboutLinkClass}>
+					News
 				</a>
 				<a href="/blog" class={blogLinkClass}>
 					Blog

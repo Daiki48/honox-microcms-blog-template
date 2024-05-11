@@ -1,22 +1,22 @@
 import { css } from 'hono/css';
 import { createRoute } from 'honox/factory';
 
-import { getArticles, type Article } from '../../lib/microcms';
+import { getNews, type News } from '../../lib/microcms';
 import { jstFromUtcDate } from '../../lib/formatDate';
 import Pagenation from '../../islands/pagenation';
 
 export default createRoute(async (c) => {
-	const response = await getArticles();
+	const response = await getNews();
 	return c.render(
 		<div class={blogContainerClass}>
 			<h1 class={blogHeaderClass}>Blog</h1>
 			{response.contents.length > 0 ? (
 				<ul class={blogListClass}>
-					{response.contents.map((article: Article) => (
+					{response.contents.map((news: News) => (
 						<li class={blogClass}>
 							<div class={imgClass}>
-								{article.eyecatch ? (
-									<img src={article.eyecatch.url} alt="eyecatch" width="50px" height="auto" />
+								{news.eyecatch ? (
+									<img src={news.eyecatch.url} alt="eyecatch" width="50px" height="auto" />
 								) : (
 									<img
 										src="/static/honox-blog-template-icon.webp"
@@ -27,25 +27,15 @@ export default createRoute(async (c) => {
 								)}
 							</div>
 							<div class={blogMetaClass}>
-								<a href={`/blog/${article.id}`} class={titleClass}>
-									{article.title.length > 20 ? (
-										<span title={article.title}>{`${article.title.slice(0, 20)}...`}</span>
+								<a href={`/news/${news.id}`} class={titleClass}>
+									{news.title.length > 20 ? (
+										<span title={news.title}>{`${news.title.slice(0, 20)}...`}</span>
 									) : (
-										<span title={article.title}>{article.title}</span>
+										<span title={news.title}>{news.title}</span>
 									)}
 								</a>
-								<ul class={tagListClass}>
-									{article.tag
-										? article.tag.map((tag) => (
-												<a href={`/tags/${tag}`}>
-													<li class={tagClass}>{tag}</li>
-												</a>
-											))
-										: null}
-								</ul>
 								<div class={blogMetaFooterClass}>
-									<span class={categoryClass}>{article.category}</span>
-									<time class={publishedDateClass}>{jstFromUtcDate(article.publishedAt)}</time>
+									<time class={publishedDateClass}>{jstFromUtcDate(news.publishedAt)}</time>
 								</div>
 							</div>
 						</li>
@@ -67,36 +57,9 @@ const notContentClass = css`
 	margin: 2rem;
 `;
 
-const tagClass = css`
-	margin: 0.4rem 0.2rem;
-	padding: 0.4rem;
-	list-style: none;
-	background-color: rgba(211, 211, 211, 0.5);
-	border-radius: 10px;
-	font-size: 10px;
-	color: rgba(105, 105, 105, 1);
-	&:hover {
-		background-color: rgba(211, 211, 211, 1);
-	}
-`;
-
-const tagListClass = css`
-	display: flex;
-	@media (max-width: 800px) {
-		font-size: 10px;
-	}
-`;
-
 const publishedDateClass = css`
 	font-size: 12px;
-	@media (max-width: 800px) {
-		font-size: 10px;
-	}
-`;
-
-const categoryClass = css`
-	font-size: 14px;
-	@media (max-width: 800px) {
+	@media (max-width: 1320px) {
 		font-size: 10px;
 	}
 `;
@@ -108,7 +71,7 @@ const titleClass = css`
 	&:hover {
 		color: rgb(105, 105, 105);
 	}
-	@media (max-width: 800px) {
+	@media (max-width: 1320px) {
 		font-size: 16px;
 		width: 220px;
 	}
@@ -120,7 +83,7 @@ const blogMetaFooterClass = css`
 	gap: 1rem;
 	align-items: center;
 	width: 300px;
-	@media (max-width: 800px) {
+	@media (max-width: 1320px) {
 		width: 220px;
 	}
 `;
@@ -142,7 +105,7 @@ const imgClass = css`
 	img {
 		border-radius: 8px;
 	}
-	@media (max-width: 800px) {
+	@media (max-width: 1320px) {
 		padding: 0.4rem;
 		margin: 0.2rem;
 	}
@@ -171,9 +134,9 @@ const blogHeaderClass = css`
 
 const blogContainerClass = css`
 	font-family: sans-serif;
-	width: 90%;
+	width: 80%;
 	margin: 0 auto;
-	@media (max-width: 800px) {
+	@media (max-width: 1320px) {
 		width: 100%;
 		font-size: 10px;
 		padding: 0;
