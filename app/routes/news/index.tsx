@@ -9,7 +9,7 @@ export default createRoute(async (c) => {
 	const response = await getNews();
 	return c.render(
 		<div class={blogContainerClass}>
-			<h1 class={blogHeaderClass}>Blog</h1>
+			<h1 class={blogHeaderClass}>News</h1>
 			{response.contents.length > 0 ? (
 				<ul class={blogListClass}>
 					{response.contents.map((news: News) => (
@@ -59,7 +59,7 @@ const notContentClass = css`
 
 const publishedDateClass = css`
 	font-size: 12px;
-	@media (max-width: 1320px) {
+	@media (max-width: 800px) {
 		font-size: 10px;
 	}
 `;
@@ -71,7 +71,7 @@ const titleClass = css`
 	&:hover {
 		color: rgb(105, 105, 105);
 	}
-	@media (max-width: 1320px) {
+	@media (max-width: 800px) {
 		font-size: 16px;
 		width: 220px;
 	}
@@ -83,7 +83,7 @@ const blogMetaFooterClass = css`
 	gap: 1rem;
 	align-items: center;
 	width: 300px;
-	@media (max-width: 1320px) {
+	@media (max-width: 800px) {
 		width: 220px;
 	}
 `;
@@ -105,7 +105,7 @@ const imgClass = css`
 	img {
 		border-radius: 8px;
 	}
-	@media (max-width: 1320px) {
+	@media (max-width: 800px) {
 		padding: 0.4rem;
 		margin: 0.2rem;
 	}
@@ -134,9 +134,9 @@ const blogHeaderClass = css`
 
 const blogContainerClass = css`
 	font-family: sans-serif;
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
-	@media (max-width: 1320px) {
+	@media (max-width: 800px) {
 		width: 100%;
 		font-size: 10px;
 		padding: 0;

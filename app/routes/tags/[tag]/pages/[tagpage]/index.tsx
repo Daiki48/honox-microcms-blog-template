@@ -9,58 +9,61 @@ export default createRoute(async (c) => {
 	const pageNumber = Number(tagpage);
 	const response = await getArticles(pageNumber);
 	const articles: Article[] = await getArticlesByTag(response, tag);
-	console.log('tagpage is ', tagpage);
-	console.log('article.length is ', articles.length);
 
 	return c.render(
 		<div class={tagsContainerClass}>
 			<h1 class={tagsHeaderClass}>{tag}の記事</h1>
-			<ul class={tagsListClass}>
-				{articles.map((article) => (
-					<li class={tagsClass}>
-						<div class={imgClass}>
-							{article.eyecatch ? (
-								<img src={article.eyecatch.url} alt="eyecatch" width="50px" height="auto" />
-							) : (
-								<img
-									src="/static/honox-blog-template-icon.webp"
-									alt="eyecatch"
-									width="50px"
-									height="auto"
-								/>
-							)}
-						</div>
-						<div class={blogMetaClass}>
-							<a href={`/blog/${article.id}`} class={titleClass}>
-								{article.title.length > 20 ? `${article.title.slice(0, 20)}...` : article.title}
-							</a>
-							<ul class={tagListClass}>
-								{article.tag
-									? article.tag.map((tag) => (
-											<li class={tagClass}>
-												<a href={`/tags/${tag}`}>{tag}</a>
-											</li>
-										))
-									: null}
-							</ul>
-							<div class={blogMetaFooterClass}>
-								<span class={categoryClass}>{article.category}</span>
-								<time class={publishedDateClass}>{jstFromUtcDate(article.publishedAt)}</time>
+			{articles.length > 0 ? (
+				<ul class={tagsListClass}>
+					{articles.map((article) => (
+						<li class={tagsClass}>
+							<div class={imgClass}>
+								{article.eyecatch ? (
+									<img src={article.eyecatch.url} alt="eyecatch" width="50px" height="auto" />
+								) : (
+									<img
+										src="/static/honox-blog-template-icon.webp"
+										alt="eyecatch"
+										width="50px"
+										height="auto"
+									/>
+								)}
 							</div>
-						</div>
-					</li>
-				))}
-			</ul>
-			<div class={pagenationClass}>
-				<Pagenation path={`tags/${tag}/pages`} totalCount={articles.length} limit={10} />
-			</div>
+							<div class={blogMetaClass}>
+								<a href={`/blog/${article.id}`} class={titleClass}>
+									{article.title.length > 20 ? `${article.title.slice(0, 20)}...` : article.title}
+								</a>
+								<ul class={tagListClass}>
+									{article.tag
+										? article.tag.map((tag) => (
+												<a href={`/tags/${tag}`}>
+													<li class={tagClass}>{tag}</li>
+												</a>
+											))
+										: null}
+								</ul>
+								<div class={blogMetaFooterClass}>
+									<span class={categoryClass}>{article.category}</span>
+									<time class={publishedDateClass}>{jstFromUtcDate(article.publishedAt)}</time>
+								</div>
+							</div>
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class={notContentClass}>コンテンツが存在しません</p>
+			)}
+			<Pagenation path={`tags/${tag}/pages`} totalCount={articles.length} limit={10} />
 		</div>,
 		{ title: `${tag}を選択中` }
 	);
 });
 
-const pagenationClass = css`
-	bottom: 0;
+const notContentClass = css`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 2rem;
 `;
 
 const tagClass = css`
@@ -70,6 +73,7 @@ const tagClass = css`
 	background-color: rgba(211, 211, 211, 0.5);
 	border-radius: 10px;
 	font-size: 10px;
+	color: rgba(105, 105, 105, 1);
 	&:hover {
 		background-color: rgba(211, 211, 211, 1);
 	}
@@ -77,27 +81,33 @@ const tagClass = css`
 
 const tagListClass = css`
 	display: flex;
-	@media (max-width: 1320px) {
+	@media (max-width: 800px) {
 		font-size: 10px;
 	}
 `;
 
 const publishedDateClass = css`
 	font-size: 12px;
+	@media (max-width: 800px) {
+		font-size: 10px;
+	}
 `;
 
 const categoryClass = css`
 	font-size: 14px;
+	@media (max-width: 800px) {
+		font-size: 10px;
+	}
 `;
 
 const titleClass = css`
 	font-size: 20px;
-	color: rgb(112, 128, 144);
 	width: 300px;
+	color: rgb(112, 128, 144);
 	&:hover {
 		color: rgb(105, 105, 105);
 	}
-	@media (max-width: 1320px) {
+	@media (max-width: 800px) {
 		font-size: 16px;
 		width: 220px;
 	}
@@ -109,7 +119,7 @@ const blogMetaFooterClass = css`
 	gap: 1rem;
 	align-items: center;
 	width: 300px;
-	@media (max-width: 1320px) {
+	@media (max-width: 800px) {
 		width: 220px;
 	}
 `;
@@ -131,7 +141,7 @@ const imgClass = css`
 	img {
 		border-radius: 8px;
 	}
-	@media (max-width: 1320px) {
+	@media (max-width: 800px) {
 		padding: 0.4rem;
 		margin: 0.2rem;
 	}
@@ -139,26 +149,18 @@ const imgClass = css`
 
 const tagsClass = css`
 	display: flex;
-	margin: 1.4rem;
+	margin: 1rem;
 	justify-content: start;
 	align-items: center;
-	width: 40%;
-	@media (max-width: 1320px) {
-		width: 100%;
-		justify-content: start;
-	}
 `;
 
 const tagsListClass = css`
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin: 1rem;
-	@media (max-width: 1320px) {
-		justify-content: center;
-		flex-direction: column;
-		width: 100%;
-	}
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	gap: 1.4rem;
+	justify-items: center;
+	padding: 0;
+	margin: 0;
 `;
 
 const tagsHeaderClass = css`
@@ -168,9 +170,9 @@ const tagsHeaderClass = css`
 
 const tagsContainerClass = css`
 	font-family: sans-serif;
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
-	@media (max-width: 1320px) {
+	@media (max-width: 800px) {
 		width: 100%;
 		font-size: 10px;
 		padding: 0;
