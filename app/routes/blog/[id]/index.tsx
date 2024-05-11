@@ -85,7 +85,7 @@ const articleMainClass = css`
 	display: flex;
 	justify-content: center;
 	height: auto;
-	@media (max-width: 800px) {
+	@media (max-width: 1000px) {
 		flex-direction: column-reverse;
 	}
 `;
@@ -96,12 +96,12 @@ const articleTocClass = css`
 	flex: 0 2 30%;
 	position: sticky;
 	position: --webkit-sticky;
-	top: 20px;
+	top: 6rem;
 	height: 50vh;
 	overflow: auto;
 	border-radius: 6px;
 	border-left: 4px solid rgb(192, 192, 192);
-	@media (max-width: 800px) {
+	@media (max-width: 1000px) {
 		position: unset;
 		margin-bottom: 2rem;
 	}

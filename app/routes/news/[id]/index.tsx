@@ -69,7 +69,7 @@ const newsTocClass = css`
 	flex: 0 2 30%;
 	position: sticky;
 	position: --webkit-sticky;
-	top: 20px;
+	top: 6rem;
 	height: 50vh;
 	overflow: auto;
 	border-radius: 6px;
