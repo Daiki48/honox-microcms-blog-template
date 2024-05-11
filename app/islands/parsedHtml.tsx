@@ -68,8 +68,9 @@ const articleContentClass = css`
 	img {
 		display: flex;
 		align-items: center;
-		width: auto;
-		height: 600px;
+		width: 80%;
+		height: auto;
+		object-fit: scale-down;
 		box-shadow: 0 0 8px gray;
 	}
 	a {
@@ -98,8 +99,9 @@ const articleContentClass = css`
 			line-height: 2;
 		}
 		img {
-			width: auto;
-			height: 400px;
+			width: 90%;
+			height: auto;
+			object-fit: scale-down;
 		}
 		h2 {
 			margin: 1rem 0;
