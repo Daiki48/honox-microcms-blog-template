@@ -4,12 +4,17 @@ import type { HtmlContent } from '../lib/types';
 import { AddHashLinks } from '../lib/getHeaders';
 
 export default function ParsedHtml({ content }: PropsWithChildren<HtmlContent>) {
-	const headers = useRef<HTMLDivElement>(null);
-	AddHashLinks({ headerContent: headers, tagName: 'h2' });
+	const htmlContent = useRef<HTMLDivElement>(null);
+
+	AddHashLinks({ headerContent: htmlContent, tagName: 'h2' });
 
 	return (
 		<div>
-			<div class={articleContentClass} dangerouslySetInnerHTML={{ __html: content }} ref={headers} />
+			<div
+				class={articleContentClass}
+				dangerouslySetInnerHTML={{ __html: content }}
+				ref={htmlContent}
+			/>
 		</div>
 	);
 }

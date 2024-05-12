@@ -116,7 +116,7 @@ const blogClass = css`
 	margin: 1rem;
 	justify-content: start;
 	align-items: center;
-	@media(max-width: 500px) {
+	@media (max-width: 500px) {
 		margin: 0;
 		padding: 0;
 	}
@@ -131,7 +131,7 @@ const blogListClass = css`
 	margin: 0;
 	list-style-type: none;
 	text-align: left;
-	@media(max-width: 500px) {
+	@media (max-width: 500px) {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
